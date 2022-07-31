@@ -64,18 +64,22 @@ public class MyLinkedList {
     }
 
     public void removeValueFromList(int val) {
-        ListNode current = this.head;
-        while (current != null) {
-            if (head.val == val) {
-                head = current.next;
-                break;
-            }
-            if ((current.next != null) && (current.next.val == val)) {
-                current.next = current.next.next;
-                break;
-            }
-            current = current.next;
+
+
+        if(head.val == val){
+            head=head.next;
         }
+        ListNode current = this.head;
+        ListNode prev=null;
+
+        while(current!=null && current.val != val){
+            prev= current;
+            current= current.next;
+        }
+        if (current==null)
+            return;
+        prev.next=current.next;
+
     }
 
     private ListNode removeFirst() {
@@ -311,20 +315,78 @@ public class MyLinkedList {
     }
 
     public void insertInSortedLinkedList(ListNode current, int data){
-        while (current !=null && current.next != null){
-            System.out.println("current: "+current.val + " next: "+current.next.val);
-            if(current.val < data && data <= current.next.val ){
-                System.out.println("Inside if");
-                ListNode node = new ListNode(data);
-                node.next=current.next;
-                current.next=node;
-                break;
-            }
-            current=current.next;
+        ListNode newNode = new ListNode(data);
+        ListNode prev=null;
+        if (current.val > data){
+            newNode.next=current;
+            head=newNode;
+            return;
         }
 
+       while (current != null && current.val < data){
+           prev= current;
+           if(current.next !=null)
+            current=current.next;
+           else break;
+       }
+        if(prev == current)
+            current.next=newNode;
+        else {
+            prev.next = newNode;
+            newNode.next = current;
+        }
     }
 
+    public ListNode insertInSortedLinkedListTrainer(ListNode head, int data) {
+        ListNode newNode = new ListNode(data);
+        ListNode prev = null;
+        ListNode current = head;
+
+        if(data < head.val){
+            newNode.next=current;
+            head = newNode;
+            return head;
+        }
+
+        while (current != null && current.val < data) {
+            prev = current;
+            current = current.next;
+        }
+            prev.next = newNode;
+            newNode.next = current;
+
+            return head;
+    }
+
+    public static  ListNode createCircularLinkedList() {
+        ListNode head = new ListNode(1);
+        ListNode two = new ListNode(2);
+        ListNode three = new ListNode(3);
+        ListNode four = new ListNode(4);
+        ListNode five = new ListNode(5);
+        ListNode six = new ListNode(6);
+
+        head.next=two;
+        two.next=three;
+        three.next=four;
+        four.next=five;
+        five.next=six;
+//        six.next=two;
+
+        return head;
+    }
+
+    public boolean findCircularLinkedList(ListNode  current){
+        ListNode slw=  current, fst = current;
+        while (fst != null && fst.next !=null) {
+            fst= fst.next.next;
+            slw = slw.next;
+
+            if (fst == slw)
+                return true;
+        }
+        return false;
+    }
     public static void main(String[] args) {
 
         MyLinkedList ll = new MyLinkedList();
@@ -387,14 +449,22 @@ public class MyLinkedList {
  ll.add(1);
  ll.add(3);
  ll.add(4);
- ll.add(5);
- ll.add(6);
- ll.add(7);
+// ll.add(5);
+// ll.add(6);
+// ll.add(7);
         ll.printListFromHead(ll.head);
 //        ll.removeDuplicatesFromLinkedList(ll.head);
 //        ll.printListFromHead(ll.head);
-        ll.insertInSortedLinkedList(ll.head,8);
-        ll.printListFromHead(ll.head);
+//        ll.insertInSortedLinkedList(ll.head,0);
+//        ll.insertInSortedLinkedListTrainer(ll.head,0);
+//        ll.head=ll.insertInSortedLinkedListTrainer(ll.head,0);
+//        ll.printListFromHead(ll.head);
+//
+//        ll.removeValueFromList(0);
+//        ll.printListFromHead(ll.head);
+
+        ListNode test = createCircularLinkedList();
+        System.out.println(ll.findCircularLinkedList(test));
     }
 
 
