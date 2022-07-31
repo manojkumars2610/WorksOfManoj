@@ -31,24 +31,23 @@ public class SwappingNodesLinkedList1721 {
             rigt=rigt.next;
             current=current.next;
         }
-        MyLinkedList temp = new MyLinkedList();
 
 
-        ListNode rnode = rigt.next;
-        ListNode rAft = rnode.next;
-        rigt.next=null;
+        rigt = rigt.next;
         System.out.println("Printing Right");
-        temp.printListFromHead(rigt);
 
-        lnode.next=rAft;
-        rnode.next=lAft;
+//        lnode.next=rAft;
+//        rnode.next=lAft;
         System.out.println("Left :" +lnode.val);
-        System.out.println("Right :"+ rnode.val);
+        System.out.println("Right :"+ rigt.val);
 
-        System.out.println("current :"+ current.val);
+        int temp=lnode.val;
+        lnode.val=rigt.val;
+        rigt.val=temp;
+//        System.out.println("current :"+ current.val);
 
 
-        temp.printListFromHead(lnode);
+//        temp.printListFromHead(lnode);
 //        temp.printListFromHead(rnode);
 
 /*
@@ -87,8 +86,8 @@ return head;
 
         list.printListFromHead(list.head);
 
-        swapNodes(list.head,2);
+        swapNodes(list.head,7);
 
-//        list.printListFromHead(list.head);
+        list.printListFromHead(list.head);
     }
 }
