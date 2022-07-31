@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class FindMiddleLinkedList {
 
-	 public ListNode middleNode(ListNode head) {
+	 public static ListNode findMiddleNode(ListNode head) {
 		 ListNode fast=head, slow=head;
 		 
 		 while(fast!=null && fast.next!=null) {
@@ -15,13 +15,19 @@ public class FindMiddleLinkedList {
 	        
 	    }
 	public static void main(String[] args) {
-		LinkedList<Integer> myList = new LinkedList<Integer>();
+		MyLinkedList myList = new MyLinkedList();
 		
-		for(int i=0 ; i <=20; i++) {
+		for(int i=0 ; i <=9; i++) {
 			myList.add(i);
 		}
-		
-		
+
+		myList.printListFromHead(myList.head);
+
+		ListNode middleNode = findMiddleNode(myList.head);
+
+		myList.printListFromHead(middleNode);
+
+
 
 	}
 

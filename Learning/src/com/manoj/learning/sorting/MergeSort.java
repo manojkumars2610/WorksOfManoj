@@ -79,13 +79,6 @@ public class MergeSort {
 
     }
     private static void mergeSort(int[] input, int s, int e) {
-/*        while(s<e){
-            int m= (s+e)/2;
-            System.out.println("value of m= "+m);
-            mergeSort(input,s,m);
-            mergeSort(input,m+1,e);
-            merge(input,s,m,e);
-        }*/
         if (s == e)
             return;
         int m = (s + e) / 2;
