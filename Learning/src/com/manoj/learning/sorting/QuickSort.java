@@ -67,7 +67,7 @@ public class QuickSort {
         printArray(data);
 
 //        partition(data, 0, data.length - 1);
-        data = quickSort(data, 0, data.length - 1);
+            data = quickSort(data, 0, data.length - 1);
         System.out.println("After sorting...");
 //        Arrays.stream(data).forEach(System.out::println);
         printArray(data);
